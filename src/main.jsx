@@ -1,9 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { PrimerComponente } from './App';
+import { ContadorApp } from './contador/ContadorApp'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <PrimerComponente />
+    <ContadorApp value = {0} />
   </React.StrictMode>,
 )
