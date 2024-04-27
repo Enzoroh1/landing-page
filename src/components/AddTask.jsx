@@ -1,19 +1,28 @@
 import { useState } from "react";
 
-export const AddTask = () => {
-
-  const [inputValue, setinputValue] = useState();
+export const AddTask = ({ addTask }) => {
+  const [inputValue, setinputValue] = useState("");
 
   const onInputChange = (event) => {
-    console.log("inputValue");
-      
-  }
+    setinputValue(event.target.value);
+  };
+  const onSubmit = (event) => {
+    const send = {
+      nombre: inputValue,
+      visto: false,
+    };
+    event.preventDefault();
+    addTask(task => [...task, send]);
+  };
 
   return (
-    <input 
-        type="text" 
+    <form onSubmit={onSubmit}>
+      <input
+        type="text"
         placeholder="Ingresar tarea"
         value={inputValue}
-        onChange={(event) => onInputChange(event)}
-    />)
-}
+        onChange={onInputChange}
+      />
+    </form>
+  );
+};

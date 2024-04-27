@@ -30,7 +30,7 @@ export const TaskList = () => {
       <ol>
         {arreglo.map( item => <Items key={item.nombre} nombre={item.nombre} visto={item.visto}/>)}
       </ol>
-      <AddTask/>
+      <AddTask addTask={setArreglo}/>
       <button onClick={() => addTask()}>Agregar tarea</button>
     </>
   );
