@@ -7,12 +7,8 @@ export const AddTask = ({ addTask }) => {
     setinputValue(event.target.value);
   };
   const onSubmit = (event) => {
-    const send = {
-      nombre: inputValue,
-      visto: false,
-    };
     event.preventDefault();
-    addTask(task => [...task, send]);
+    addTask(inputValue);
   };
 
   return (

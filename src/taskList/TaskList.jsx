@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { AddTask } from "../components/AddTask";
+import "./TaskList.css";
 
 const Items = ({ nombre, visto }) => {
   return (
@@ -11,27 +12,38 @@ const Items = ({ nombre, visto }) => {
 };
 
 export const TaskList = () => {
-
   const addTask = () => {
-    setArreglo([...arreglo, {nombre:"nuevo", visto:false}])
-  }
+    setArreglo([...arreglo, { nombre: "nuevo", visto: true }]);
+  };
 
   let listadoSecciones = [
-    { nombre: "limpiar", visto: true},
-    { nombre: "comprar", visto: true},
-    { nombre: "trabajar", visto: true}
+    { id:1, nombre: "limpiar", visto: true },
+    { id:2, nombre: "comprar", visto: true },
+    { id:3, nombre: "trabajar", visto: true },
+  ];
+  const [arreglo, setArreglo] = useState(listadoSecciones);
 
-  ]
-  const [arreglo, setArreglo] = useState(listadoSecciones)
-  
+  const onAddTask = (val) => {
+    let valor = val.trim(); // Elimina espacios en blanco
+    if (val < 1) return;
+    const newTask = {
+      id: arreglo.length + 1,
+      nombre: valor,
+      visto: true,
+    };
+    setArreglo([...arreglo, newTask]);
+  };
+
   return (
     <>
       <h1>App List</h1>
+      <AddTask addTask={onAddTask} />
       <ol>
-        {arreglo.map( item => <Items key={item.nombre} nombre={item.nombre} visto={item.visto}/>)}
+        {arreglo.map((item) => (
+          <Items key={item.id} nombre={item.nombre} visto={item.visto} />
+        ))}
       </ol>
-      <AddTask addTask={setArreglo}/>
-      <button onClick={() => addTask()}>Agregar tarea</button>
+      {/* <button onClick={() => addTask()}>Agregar tarea</button> */}
     </>
   );
 };
