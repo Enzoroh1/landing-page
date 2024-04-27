@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { AddTask } from "../components/AddTask";
 
 const Items = ({ nombre, visto }) => {
   return (
@@ -27,8 +28,9 @@ export const TaskList = () => {
     <>
       <h1>App List</h1>
       <ol>
-        {arreglo.map( item => <Items key={item.nombre} nombre={item.nombre} visto={item.visto}></Items>)}
+        {arreglo.map( item => <Items key={item.nombre} nombre={item.nombre} visto={item.visto}/>)}
       </ol>
+      <AddTask/>
       <button onClick={() => addTask()}>Agregar tarea</button>
     </>
   );
